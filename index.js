@@ -11,7 +11,7 @@ const profileRouter = require('./routes/api/profiles');
 const userRouter = require('./routes/api/users');
 // const morgan = require('morgan');
 connectDB();
-app.use(cors);
+//app.use(cors);
 // app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.get('/', (req, res) => {
@@ -22,4 +22,4 @@ app.use('/api', authRouter);
 app.use('/api', postRouter);
 app.use('/api', profileRouter);
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || port);
