@@ -14,6 +14,9 @@ connectDB();
 app.use(cors);
 // app.use(morgan('combined'));
 app.use(bodyParser.json());
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
 app.use('/api', userRouter);
 app.use('/api', authRouter);
 app.use('/api', postRouter);
