@@ -19,6 +19,6 @@ app.use('/api', authRouter);
 app.use('/api', postRouter);
 app.use('/api', profileRouter);
 
-app.listen(port, () => {
+app.listen(process.env.CYCLIC_URL || port, () => {
   console.log(`Example app listening on port ${port}`);
 });
