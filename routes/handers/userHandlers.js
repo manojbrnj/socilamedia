@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const userRouter = require('../api/users');
 
 const getUserHandler = async (req, res) => {
-  const user = await users.find().select('-hashedPassword');
+  const user = await users.findById(req.user._id).select('-hashedPassword');
 
   res.json({
     user: user,
