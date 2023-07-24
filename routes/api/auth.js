@@ -6,17 +6,7 @@ const authRouter = express.Router();
 //@route GET api/users
 //@desc test route
 
-authRouter.get(
-  '/auth',
-  [
-    check('email', 'email required ').isEmail().not().isEmpty(),
-    check('password', 'password required and length should be 6 or more')
-      .not()
-      .isEmpty()
-      .isLength({min: 6, max: 12}),
-  ],
-  getAuthHandler,
-);
+authRouter.get('/auth', getAuthHandler);
 
 authRouter.post(
   '/login',
