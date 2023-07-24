@@ -5,7 +5,7 @@ const {validationResult} = require('express-validator');
 const getAuthHandler = async (req, res) => {
   try {
     const user = await users
-      .findById({_id: req.user})
+      .findById({_id: req.user._id})
       .select('-hashedPassword');
     console.log(JSON.stringify(user));
     return res.status(200).json({

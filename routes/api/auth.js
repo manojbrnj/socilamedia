@@ -1,12 +1,13 @@
 const express = require('express');
 const {check} = require('express-validator');
+const auth = require('../../middleware/auth');
 const {getAuthHandler, loginUserHandler} = require('../handers/authHandlers');
 const authRouter = express.Router();
 
 //@route GET api/users
 //@desc test route
 
-authRouter.get('/auth', getAuthHandler);
+authRouter.get('/auth', auth, getAuthHandler);
 
 authRouter.post(
   '/login',
