@@ -2,7 +2,14 @@ const users = require('../../models/users');
 const jwt = require('jsonwebtoken');
 const {validationResult} = require('express-validator');
 
-const getAuthHandler = (req, res) => {
+const getAuthHandler = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-hashedPassword');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
   res.json({
     message: 'auth list',
   });
