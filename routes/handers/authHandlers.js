@@ -41,7 +41,7 @@ const loginUserHandler = async (req, res) => {
       );
     } else {
       return res.status(401).json({
-        msg: 'Please check userName and password',
+        errors: [{msg: 'Please check userName and password'}],
       });
     }
     res.cookies = token;
