@@ -20,7 +20,7 @@ const getAuthHandler = async (req, res) => {
 const loginUserHandler = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    res.send({errors: errors.array()});
+    return res.send({errors: errors.array()});
   }
   try {
     const user = await users.findOne({email: req.body.email});
@@ -45,7 +45,7 @@ const loginUserHandler = async (req, res) => {
       });
     }
     res.cookies = token;
-    res.json({
+    return res.json({
       token: token,
       msg: 'user logged in',
     });
