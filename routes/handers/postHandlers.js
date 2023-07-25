@@ -40,7 +40,7 @@ const addPostHandler = async (req, res) => {
   const userData = await User.findOne({_id: req.user._id});
   if (!userData) {
     return res.status(401).json({
-      message: 'no user record found',
+      errors: [{msg: 'User Not Found'}],
     });
   }
   const {user} = req;
@@ -54,7 +54,7 @@ const addPostHandler = async (req, res) => {
 
   try {
     const post = await Post.create(postFields);
-    console.log(post);
+    //console.log(post);
     return res.status(200).json({
       post: post,
     });

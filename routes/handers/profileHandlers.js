@@ -5,7 +5,7 @@ const {validationResult} = require('express-validator');
 
 const getProfileHandler = async (req, res) => {
   const {user} = req;
-  console.log(user._id);
+  // console.log(user._id);
   try {
     const profile = await Profile.find({user: user._id}).populate('user', [
       'name',
@@ -84,7 +84,7 @@ const createProfileHandler = async (req, res) => {
     let profile = await Profile.findOne({user: user._id});
 
     if (profile) {
-      console.log(profileFields);
+      //  console.log(profileFields);
       //find and update $set 3
       profile = await Profile.findOneAndUpdate(
         {user: profile.user},
@@ -92,7 +92,7 @@ const createProfileHandler = async (req, res) => {
         {new: true},
       );
 
-      console.log(profile);
+      // console.log(profile);
       return res.status(200).json({
         profile: profile,
       });
@@ -114,7 +114,7 @@ const createProfileHandler = async (req, res) => {
 // remove profile an duser
 const removeProfileHandler = async (req, res) => {
   const {user} = req;
-  console.log(user._id);
+  //console.log(user._id);
   try {
     const profileData = await Profile.findOneAndRemove({user: user._id});
     const userData = await User.findOneAndRemove({_id: user._id});
@@ -191,7 +191,7 @@ const updateexperienceProfileHandler = async (req, res) => {
     const profile = await Profile.findOne({user: user._id});
     if (!profile) {
       return res.status(401).json({
-        message: 'no record found',
+        errors: [{msg: 'User Not Found'}],
       });
     }
     const profileData = await Profile.findOneAndUpdate(
@@ -221,7 +221,7 @@ const removeexperienceProfileHandler = async (req, res) => {
 
     if (!profile) {
       return res.status(401).json({
-        message: 'no record found',
+        errors: [{msg: 'User Not Found'}],
       });
     }
     // remove experince in mongodb deep level update
