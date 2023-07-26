@@ -20,7 +20,7 @@ const createUserHandler = async (req, res) => {
   try {
     const data = await users.findOne({email: req.body.email});
     if (data) {
-      return res.json({errors: [{msg: 'user Found'}]});
+      return res.status(400).json({errors: [{msg: 'user Found'}]});
     }
     const user = new User({
       name: req.body.name,
