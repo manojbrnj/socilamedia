@@ -65,8 +65,8 @@ const createProfileHandler = async (req, res) => {
   if (website) profileFields.website = website;
   if (location) profileFields.location = location;
   if (status) profileFields.status = status;
-  if (githubusername) profileFields.company = githubusername;
-  if (bio) profileFields.company = bio;
+  if (githubusername) profileFields.githubusername = githubusername;
+  if (bio) profileFields.bio = bio;
 
   //skills
   if (skills) {
