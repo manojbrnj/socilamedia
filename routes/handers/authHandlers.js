@@ -25,7 +25,7 @@ const loginUserHandler = async (req, res) => {
   try {
     const user = await users.findOne({email: req.body.email});
     if (!user) {
-      return res.json({msg: 'user not Found'});
+      return res.status(400).json({msg: 'user not Found'});
     }
     const pass =
       user.encryptPassword(req.body.password) === user.hashedPassword;
