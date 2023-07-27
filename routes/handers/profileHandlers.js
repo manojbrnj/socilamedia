@@ -18,7 +18,7 @@ const getProfileHandler = async (req, res) => {
     }
 
     return res.status(200).json({
-      profile: profile.profile[0],
+      profile: profile.profile,
     });
   } catch (error) {
     console.error(error.message);
