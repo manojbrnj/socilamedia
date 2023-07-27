@@ -7,7 +7,7 @@ const getProfileHandler = async (req, res) => {
   const {user} = req;
   // console.log(user._id);
   try {
-    const profile = await Profile.find({user: user._id}).populate('user', [
+    const profile = await Profile.findOne({user: user._id}).populate('user', [
       'name',
       'avatar',
     ]);
@@ -18,7 +18,7 @@ const getProfileHandler = async (req, res) => {
     }
 
     return res.status(200).json({
-      profile: profile.profile,
+      profile: profile,
     });
   } catch (error) {
     console.error(error.message);
